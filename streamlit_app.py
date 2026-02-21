@@ -98,6 +98,6 @@ else:
             st.balloons()
             st.title("🏆 USPJELI STE!")
             st.markdown("Hvala vam na putovanju kroz vizije.")
-            st.markdown("[Preuzmi knjigu DOI](https://doi.org)")
+            st.markdown("[Preuzmi cijelu knjigu na DOI](https://doi.org/10.5281/zenodo.18379898)")
         else:
             st.error("Odgovori nisu točni. Pokušaj ponovno.")
