@@ -1,16 +1,34 @@
 import streamlit as st
 
-# 1. POSTAVKE I STIL
-st.set_page_config(page_title="Snovi i Vizije by Dominic Chant", page_icon="☁️")
+# 1. POSTAVKE I MATRIX STIL
+st.set_page_config(page_title="Snovi i Vizije", page_icon="☁️")
 
-# Stil s tamnom temom i zelenim tekstom
 st.markdown("""
 <style>
-    .stApp { background-color: #000; color: #00FF41; font-family: 'Courier New', monospace; }
-    .stTextInput>div>div>input { color: #00FF41; background-color: #111; border-color: #00FF41; }
-    .stButton>button { background-color: #00FF41; color: #000; border-radius: 5px; }
+    /* Glavna pozadina aplikacije */
+    .stApp { 
+        background-color: #000000; 
+        color: #00FF41; 
+        font-family: 'Courier New', monospace;
+    }
+    
+    /* BIJELA SLOVA ZA UNOS (Input fields) */
+    input {
+        color: #FFFFFF !important; 
+        background-color: #111111 !important;
+        border: 1px solid #00FF41 !important;
+        caret-color: #00FF41; /* Zeleni kursor koji treperi */
+    }
+
+    /* Boja teksta iznad polja za unos */
+    .stTextInput label {
+        color: #00FF41 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
+
+# Ostatak koda ide ovdje...
+
 
 st.title("☁️ Snovi i Vizije")
 st.subheader("by Dominic Chant")
