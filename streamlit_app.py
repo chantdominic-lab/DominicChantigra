@@ -4,28 +4,45 @@ import streamlit as st
 st.set_page_config(page_title="Snovi i Vizije", page_icon="☁️")
 
 st.markdown("""
+st.markdown("""
 <style>
-    /* Glavna pozadina aplikacije */
+    /* Glavna pozadina i osnovni tekst */
     .stApp { 
         background-color: #000000; 
         color: #00FF41; 
         font-family: 'Courier New', monospace;
     }
     
-    /* BIJELA SLOVA ZA UNOS (Input fields) */
+    /* 1. TEKST KOJI TIPKAŠ (Mora biti bijel i jasno vidljiv) */
     input {
         color: #FFFFFF !important; 
         background-color: #111111 !important;
-        border: 1px solid #00FF41 !important;
-        caret-color: #00FF41; /* Zeleni kursor koji treperi */
+        border: 2px solid #00FF41 !important;
+        caret-color: #00FF41 !important; /* Zeleni kursor koji treperi */
+        font-size: 1.2rem !important;
     }
 
-    /* Boja teksta iznad polja za unos */
+    /* 2. PLACEHOLDER (Tekst "Unesi broj..." - postavit ćemo ga na svijetlo zelenu) */
+    input::placeholder {
+        color: #008F11 !important;
+        opacity: 1; 
+    }
+
+    /* 3. LABEL (Tekst iznad polja, npr. "Unesi broj vizije") */
     .stTextInput label {
         color: #00FF41 !important;
+        font-weight: bold !important;
+    }
+
+    /* 4. UKLANJANJE PLAVOG OKVIRA (Streamlit default fokus) */
+    input:focus {
+        outline: none !important;
+        border: 2px solid #FFFFFF !important; /* Bijeli okvir kad klikneš */
+        box-shadow: 0 0 10px #00FF41 !important;
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 # Ostatak koda ide ovdje...
 
