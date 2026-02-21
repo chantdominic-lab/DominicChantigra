@@ -5,33 +5,38 @@ st.set_page_config(page_title="Snovi i Vizije", page_icon="☁️")
 
 st.markdown("""
 <style>
-    /* 1. Pozadina i font */
+    /* Pozadina i osnovni tekst */
     .stApp { 
         background-color: #000000 !important; 
         color: #00FF41 !important; 
         font-family: 'Courier New', monospace;
     }
     
-    /* 2. TEKST KOJI TIPKAŠ (Unos) - BIJELO */
+    /* UNOS (Što ti tipkaš) */
     input {
         color: #FFFFFF !important; 
         background-color: #111111 !important;
         border: 2px solid #00FF41 !important;
     }
 
-    /* 3. LABEL I POMOĆNI TEKST (Ono što je sada sivo) */
-    /* Ovo popravlja "Press Enter to apply" i naslov iznad polja */
-    .stTextInput label, .stTextInput div[data-testid="stMarkdownContainer"] p {
-        color: #FFFFFF !important; /* Promijenjeno u BIJELO za bolju vidljivost */
-        font-weight: bold !important;
+    /* SVE ŠTO JE BILO SIVO (Labeli, Press Enter, Help tekst) */
+    /* Ciljamo sve varijante malih natpisa koje Streamlit koristi */
+    .stTextInput label, 
+    div[data-testid="stWidgetLabel"] p, 
+    div[data-testid="stMarkdownContainer"] p,
+    small, 
+    .st-ae, .st-af, .st-ag, .st-ah,
+    div[data-baseweb="input"] + div {
+        color: #FFFFFF !important;
+        opacity: 1 !important;
     }
 
-    /* 4. DODATNO: Uklanjanje sive boje s pomoćnih natpisa */
-    div[data-testid="stWidgetLabel"] p {
+    /* SPECIFIČNO ZA "Press Enter to apply" */
+    div[data-testid="stInputInstructions"] {
         color: #FFFFFF !important;
     }
-    
-    /* 5. Gumb stil */
+
+    /* GUMB STIL */
     .stButton>button {
         background-color: #00FF41 !important;
         color: #000000 !important;
@@ -39,7 +44,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
 
 st.title("☁️ Snovi i Vizije")
 st.subheader("by Dominic Chant")
