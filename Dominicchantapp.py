@@ -2,7 +2,15 @@ import streamlit as st
 
 # 1. POSTAVKE I STIL
 st.set_page_config(page_title="Snovi i Vizije by Dominic Chant", page_icon="☁️")
-st.markdown("<style>.stApp { background-color: #000; color: #00FF41; font-family: monospace; }</style>", unsafe_allow_html=True)
+
+# Stil s tamnom temom i zelenim tekstom
+st.markdown("""
+<style>
+    .stApp { background-color: #000; color: #00FF41; font-family: 'Courier New', monospace; }
+    .stTextInput>div>div>input { color: #00FF41; background-color: #111; border-color: #00FF41; }
+    .stButton>button { background-color: #00FF41; color: #000; border-radius: 5px; }
+</style>
+""", unsafe_allow_html=True)
 
 st.title("☁️ Snovi i Vizije")
 st.subheader("by Dominic Chant")
@@ -39,18 +47,27 @@ preostalo = 19 - len(st.session_state.otkljucano)
 if preostalo > 0:
     st.info(f"🔓 Otključano vizija: {len(st.session_state.otkljucano)}/19")
     broj = st.text_input("Unesi broj vizije (1-19):")
+    
     if broj in vizije:
         st.markdown(f"### VIZIJA {broj}")
-        st.write(vizije[broj])
+        st.info(vizije[broj])
         if st.button("Zabilježi viziju"):
             st.session_state.otkljucano.add(broj)
             st.rerun()
+    elif broj != "":
+        st.error("Unesi važeći broj između 1 i 19.")
 else:
     st.success("✅ SVIH 19 VIZIJA JE PRIKUPLJENO.")
     ime = st.text_input("Tko je vođa anđela?")
     pravilo = st.text_input("Zlatno pravilo?")
+    
     if st.button("POTVRDI"):
+        # Provjera točnih odgovora
         if "mihael" in ime.lower() and "ne čini drugima" in pravilo.lower():
             st.balloons()
             st.title("🏆 USPJELI STE!")
+            st.markdown("Hvala vam na putovanju kroz vizije.")
+            # Ovdje možeš dodati pravi link na knjigu
             st.markdown("[Preuzmi knjigu DOI](https://doi.org)")
+        else:
+            st.error("Odgovori nisu točni. Pokušaj ponovno.")
