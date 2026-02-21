@@ -5,46 +5,41 @@ st.set_page_config(page_title="Snovi i Vizije", page_icon="☁️")
 
 st.markdown("""
 <style>
-    /* Glavna pozadina aplikacije */
+    /* 1. Pozadina i font */
     .stApp { 
-        background-color: #000000; 
-        color: #00FF41; 
+        background-color: #000000 !important; 
+        color: #00FF41 !important; 
         font-family: 'Courier New', monospace;
     }
     
-    /* BIJELA SLOVA DOK TIPKAŠ I VIDLJIV OKVIR */
+    /* 2. TEKST KOJI TIPKAŠ (Unos) - BIJELO */
     input {
         color: #FFFFFF !important; 
         background-color: #111111 !important;
         border: 2px solid #00FF41 !important;
-        caret-color: #00FF41 !important;
-        font-size: 1.2rem !important;
-        padding: 10px !important;
     }
 
-    /* Boja teksta iznad polja (label) */
-    .stTextInput label {
-        color: #00FF41 !important;
+    /* 3. LABEL I POMOĆNI TEKST (Ono što je sada sivo) */
+    /* Ovo popravlja "Press Enter to apply" i naslov iznad polja */
+    .stTextInput label, .stTextInput div[data-testid="stMarkdownContainer"] p {
+        color: #FFFFFF !important; /* Promijenjeno u BIJELO za bolju vidljivost */
         font-weight: bold !important;
     }
 
-    /* Gumb stil (Zelena pozadina, crna slova) */
-    .stButton>button {
-        background-color: #00FF41;
-        color: #000000;
-        border: none;
-        width: 100%;
-        font-weight: bold;
+    /* 4. DODATNO: Uklanjanje sive boje s pomoćnih natpisa */
+    div[data-testid="stWidgetLabel"] p {
+        color: #FFFFFF !important;
     }
     
-    /* Info poruke (vizije) neka budu u zelenom okviru */
-    .stAlert {
-        background-color: #000000;
-        color: #00FF41;
-        border: 1px solid #00FF41;
+    /* 5. Gumb stil */
+    .stButton>button {
+        background-color: #00FF41 !important;
+        color: #000000 !important;
+        font-weight: bold !important;
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 st.title("☁️ Snovi i Vizije")
 st.subheader("by Dominic Chant")
