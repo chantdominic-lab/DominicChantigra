@@ -1,56 +1,55 @@
 import streamlit as st
 
-# 1. POSTAVKE I MATRIX STIL
+# 1. POSTAVKE I MATRIX STIL (CIJELI CSS BLOK)
 st.set_page_config(page_title="Snovi i Vizije", page_icon="☁️")
 
 st.markdown("""
-st.markdown("""
 <style>
-    /* Glavna pozadina i osnovni tekst */
+    /* Glavna pozadina aplikacije */
     .stApp { 
         background-color: #000000; 
         color: #00FF41; 
         font-family: 'Courier New', monospace;
     }
     
-    /* 1. TEKST KOJI TIPKAŠ (Mora biti bijel i jasno vidljiv) */
+    /* BIJELA SLOVA DOK TIPKAŠ I VIDLJIV OKVIR */
     input {
         color: #FFFFFF !important; 
         background-color: #111111 !important;
         border: 2px solid #00FF41 !important;
-        caret-color: #00FF41 !important; /* Zeleni kursor koji treperi */
+        caret-color: #00FF41 !important;
         font-size: 1.2rem !important;
+        padding: 10px !important;
     }
 
-    /* 2. PLACEHOLDER (Tekst "Unesi broj..." - postavit ćemo ga na svijetlo zelenu) */
-    input::placeholder {
-        color: #008F11 !important;
-        opacity: 1; 
-    }
-
-    /* 3. LABEL (Tekst iznad polja, npr. "Unesi broj vizije") */
+    /* Boja teksta iznad polja (label) */
     .stTextInput label {
         color: #00FF41 !important;
         font-weight: bold !important;
     }
 
-    /* 4. UKLANJANJE PLAVOG OKVIRA (Streamlit default fokus) */
-    input:focus {
-        outline: none !important;
-        border: 2px solid #FFFFFF !important; /* Bijeli okvir kad klikneš */
-        box-shadow: 0 0 10px #00FF41 !important;
+    /* Gumb stil (Zelena pozadina, crna slova) */
+    .stButton>button {
+        background-color: #00FF41;
+        color: #000000;
+        border: none;
+        width: 100%;
+        font-weight: bold;
+    }
+    
+    /* Info poruke (vizije) neka budu u zelenom okviru */
+    .stAlert {
+        background-color: #000000;
+        color: #00FF41;
+        border: 1px solid #00FF41;
     }
 </style>
 """, unsafe_allow_html=True)
 
-
-# Ostatak koda ide ovdje...
-
-
 st.title("☁️ Snovi i Vizije")
 st.subheader("by Dominic Chant")
 
-# 2. SVE VIZIJE (1-19)
+# 2. BAZA VIZIJA (1-19)
 vizije = {
     "1": "U snu sam vidio strašno vrijeme i tužni pogled ljudi kroz žicu...",
     "2": "Vidio sam čovjeka koji programira program...",
@@ -73,36 +72,37 @@ vizije = {
     "19": "Vidio sam osobu koja je hram... svjetlost koja se otvori."
 }
 
-# 3. LOGIKA IGRE
+# 3. LOGIKA IGRE (Session State)
 if 'otkljucano' not in st.session_state:
     st.session_state.otkljucano = set()
 
 preostalo = 19 - len(st.session_state.otkljucano)
 
 if preostalo > 0:
-    st.info(f"🔓 Otključano vizija: {len(st.session_state.otkljucano)}/19")
-    broj = st.text_input("Unesi broj vizije (1-19):")
+    st.write(f"🔓 Otključano vizija: **{len(st.session_state.otkljucano)}/19**")
+    
+    # Polje za unos (ovdje će slova biti bijela)
+    broj = st.text_input("Unesi broj vizije (1-19):", key="glavni_input")
     
     if broj in vizije:
-        st.markdown(f"### VIZIJA {broj}")
+        st.markdown(f"### 🛡️ VIZIJA {broj}")
         st.info(vizije[broj])
         if st.button("Zabilježi viziju"):
             st.session_state.otkljucano.add(broj)
             st.rerun()
     elif broj != "":
-        st.error("Unesi važeći broj između 1 i 19.")
+        st.error("Nepoznata vizija. Pokušaj ponovno.")
 else:
     st.success("✅ SVIH 19 VIZIJA JE PRIKUPLJENO.")
-    ime = st.text_input("Tko je vođa anđela?")
-    pravilo = st.text_input("Zlatno pravilo?")
+    ime = st.text_input("Tko je vođa anđela?", key="final_ime")
+    pravilo = st.text_input("Zlatno pravilo?", key="final_pravilo")
     
     if st.button("POTVRDI"):
-        # Provjera točnih odgovora
+        # Provjera točnih odgovora (mala slova radi lakšeg unosa)
         if "mihael" in ime.lower() and "ne čini drugima" in pravilo.lower():
             st.balloons()
             st.title("🏆 USPJELI STE!")
             st.markdown("Hvala vam na putovanju kroz vizije.")
-            # Ovdje možeš dodati pravi link na knjigu
             st.markdown("[Preuzmi knjigu DOI](https://doi.org)")
         else:
             st.error("Odgovori nisu točni. Pokušaj ponovno.")
