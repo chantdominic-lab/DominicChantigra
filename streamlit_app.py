@@ -122,6 +122,6 @@ else:
             st.title("🏆 USPJELI STE!")
             st.markdown("### Čestitamo, prošli ste trnovit put vizija.")
             st.markdown("---")
-            st.markdown("[📥 PREUZMI KNJIGU OVDJE](TVOJ_LINK_KOJI_SI_UBACIO)")
+            st.markdown("[📥 PREUZMI KNJIGU OVDJE](https://doi.org/10.5281/zenodo.18379898)")
 
             st.error("Odgovori nisu točni. Pokušaj ponovno.")
