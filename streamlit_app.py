@@ -125,4 +125,4 @@ else:
             st.title("🏆 USPJELI STE!")
             st.markdown("### Čestitamo, prošli ste put vizija.")
             # Ovdje stavi svoj puni URL link
-            st.markdown("[📥 KLIKNI OVDJE ZA PREUZIMANJE KNJIGE](https://doi.org)")
+            st.markdown("[📥 KLIKNI OVDJE ZA PREUZIMANJE KNJIGE](https://doi.org/10.5281/zenodo.18379898)")
