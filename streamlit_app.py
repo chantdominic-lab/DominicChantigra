@@ -114,7 +114,7 @@ else:
         if tocno_pravilo:
             st.write("✅ Zlatno pravilo je točno.")
         else:
-            st.error("❌ Zlatno pravilo nije točno. (Savjet: Ne čini drugima...)")
+            st.error("❌ Zlatno pravilo nije točno. (Savjet: Ne...)")
 
         # Ako su oba točna, otključaj pobjedu
         if tocno_ime and tocno_pravilo:
@@ -123,5 +123,4 @@ else:
             st.markdown("### Čestitamo, prošli ste trnovit put vizija.")
             st.markdown("---")
             st.markdown("[📥 PREUZMI KNJIGU OVDJE](https://doi.org/10.5281/zenodo.18379898)")
-
             st.error("Odgovori nisu točni. Pokušaj ponovno.")
