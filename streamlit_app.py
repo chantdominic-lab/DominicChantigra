@@ -93,15 +93,35 @@ if preostalo > 0:
         st.error("Nepoznata vizija. Pokušaj ponovno.")
 else:
     st.success("✅ SVIH 19 VIZIJA JE PRIKUPLJENO.")
-    ime = st.text_input("Tko je vođa anđela?", key="final_ime")
-    pravilo = st.text_input("Zlatno pravilo?", key="final_pravilo")
+    st.subheader("Finalni ispit mudrosti")
     
-    if st.button("POTVRDI"):
-        # Provjera točnih odgovora (mala slova radi lakšeg unosa)
-        if "mihael" in ime.lower() and "ne čini drugima" in pravilo.lower():
+    # Unos za prvo pitanje
+    ime = st.text_input("Tko je vođa anđela?", key="final_ime").strip().lower()
+    # Unos za drugo pitanje
+    pravilo = st.text_input("Zlatno pravilo?", key="final_pravilo").strip().lower()
+    
+    if st.button("POTVRDI ODGOVORE"):
+        tocno_ime = "mihael" in ime
+        tocno_pravilo = "ne čini drugima" in pravilo
+
+        # Pojedinačna provjera za prvo pitanje
+        if tocno_ime:
+            st.write("✅ Ime vođe anđela je točno.")
+        else:
+            st.error("❌ Ime vođe anđela nije točno. Razmisli ponovno.")
+
+        # Pojedinačna provjera za drugo pitanje
+        if tocno_pravilo:
+            st.write("✅ Zlatno pravilo je točno.")
+        else:
+            st.error("❌ Zlatno pravilo nije točno. (Savjet: Ne čini drugima...)")
+
+        # Ako su oba točna, otključaj pobjedu
+        if tocno_ime and tocno_pravilo:
             st.balloons()
             st.title("🏆 USPJELI STE!")
-            st.markdown("Hvala vam na putovanju kroz vizije.")
-            st.markdown("[Preuzmi cijelu knjigu na DOI](https://doi.org/10.5281/zenodo.18379898)")
-        else:
+            st.markdown("### Čestitamo, prošli ste trnovit put vizija.")
+            st.markdown("---")
+            st.markdown("[📥 PREUZMI KNJIGU OVDJE](TVOJ_LINK_KOJI_SI_UBACIO)")
+
             st.error("Odgovori nisu točni. Pokušaj ponovno.")
