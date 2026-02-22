@@ -93,34 +93,36 @@ if preostalo > 0:
         st.error("Nepoznata vizija. Pokušaj ponovno.")
 else:
     st.success("✅ SVIH 19 VIZIJA JE PRIKUPLJENO.")
+    st.markdown("---")
     st.subheader("Finalni ispit mudrosti")
     
-    # Unos za prvo pitanje
-    ime = st.text_input("Tko je vođa anđela?", key="final_ime").strip().lower()
-    # Unos za drugo pitanje
-    pravilo = st.text_input("Zlatno pravilo?", key="final_pravilo").strip().lower()
+    # Polja za unos
+    ime_input = st.text_input("Tko je vođa anđela?", key="final_ime").strip().lower()
+    pravilo_input = st.text_input("Zlatno pravilo?", key="final_pravilo").strip().lower()
     
+    # Gumb za provjeru
     if st.button("POTVRDI ODGOVORE"):
-        tocno_ime = "mihael" in ime
-        tocno_pravilo = "ne čini drugima" in pravilo
+        # Logika provjere (True/False)
+        je_ime_tocno = "mihael" in ime_input
+        je_pravilo_tocno = "ne čini drugima" in pravilo_input
 
-        # Pojedinačna provjera za prvo pitanje
-        if tocno_ime:
-            st.write("✅ Ime vođe anđela je točno.")
+        # 1. Provjera imena
+        if je_ime_tocno:
+            st.success("✅ Ime vođe anđela je točno.")
         else:
             st.error("❌ Ime vođe anđela nije točno. Razmisli ponovno.")
 
-        # Pojedinačna provjera za drugo pitanje
-        if tocno_pravilo:
-            st.write("✅ Zlatno pravilo je točno.")
+        # 2. Provjera pravila
+        if je_pravilo_tocno:
+            st.success("✅ Zlatno pravilo je točno.")
         else:
-            st.error("❌ Zlatno pravilo nije točno. (Savjet: Ne...)")
+            st.error("❌ Zlatno pravilo nije točno. (Savjet: Što ne želiš sebi...)")
 
-        # Ako su oba točna, otključaj pobjedu
-        if tocno_ime and tocno_pravilo:
+        # KONAČNI REZULTAT - Prikazuje se samo ako su oba točna
+        if je_ime_tocno and je_pravilo_tocno:
             st.balloons()
-            st.title("🏆 USPJELI STE!")
-            st.markdown("### Čestitamo, prošli ste trnovit put vizija.")
             st.markdown("---")
-            st.markdown("[📥 PREUZMI KNJIGU OVDJE](https://doi.org/10.5281/zenodo.18379898)")
-            st.error("Odgovori nisu točni. Pokušaj ponovno.")
+            st.title("🏆 USPJELI STE!")
+            st.markdown("### Čestitamo, prošli ste put vizija.")
+            # Ovdje stavi svoj puni URL link
+            st.markdown("[📥 KLIKNI OVDJE ZA PREUZIMANJE KNJIGE](https://doi.org)")
