@@ -102,27 +102,21 @@ else:
     
     # Gumb za provjeru
     if st.button("POTVRDI ODGOVORE"):
-        # Logika provjere (True/False)
+        # Logika provjere
         je_ime_tocno = "mihael" in ime_input
         je_pravilo_tocno = "ne čini drugima" in pravilo_input
 
-        # 1. Provjera imena
-        if je_ime_tocno:
-            st.success("✅ Ime vođe anđela je točno.")
-        else:
-            st.error("❌ Ime vođe anđela nije točno. Razmisli ponovno.")
-
-        # 2. Provjera pravila
-        if je_pravilo_tocno:
-            st.success("✅ Zlatno pravilo je točno.")
-        else:
-            st.error("❌ Zlatno pravilo nije točno. (Savjet: Što ne želiš sebi...)")
-
-        # KONAČNI REZULTAT - Prikazuje se samo ako su oba točna
+        # Prikaz rezultata samo NAKON klika
         if je_ime_tocno and je_pravilo_tocno:
             st.balloons()
             st.markdown("---")
             st.title("🏆 USPJELI STE!")
             st.markdown("### Čestitamo, prošli ste put vizija.")
-            # Ovdje stavi svoj puni URL link
-            st.markdown("[📥 KLIKNI OVDJE ZA PREUZIMANJE KNJIGE](https://doi.org/10.5281/zenodo.18379898)")
+            st.markdown("[📥 PREUZMI KNJIGU OVDJE](https://doi.org/10.5281/zenodo.18379898)")
+        else:
+            # Ako NIJE točno, ispiši poruke pomoći
+            if not je_ime_tocno:
+                st.error("❌ Ime vođe anđela nije točno.")
+            if not je_pravilo_tocno:
+                st.error("❌ Zlatno pravilo nije točno.")
+            st.warning("⚠️ Popravite označena polja i pokušajte ponovno.")
